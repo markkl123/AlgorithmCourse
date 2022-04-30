@@ -6,7 +6,7 @@ private:
     Node* Head = nullptr;
 public:
     bool isEmpty();
-    Node* First();
+    Node* GetHead();
     Node* Find(int key);
     Node* InsertFront(Edge edge);
     void DeleteNode(int v);
