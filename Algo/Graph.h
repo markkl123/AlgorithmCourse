@@ -2,7 +2,7 @@
 using namespace std;
 #include <iostream>
 #include <vector>
-//#include "List.h"
+#include "List.h"
 
 //Data structure to store adjacency list nodes
 
@@ -15,9 +15,9 @@ class Graph
 {
 private:
 	int n;
-	vector< List > Adjacency;
+	vector<List> Adjacency;
 public:
-	Graph(int n) { MakeEmptyGraph(n); };
+	Graph(int n):n(n) { MakeEmptyGraph(n); };
 	void MakeEmptyGraph(int n);
 	bool IsAdjacent(int u, int v);
 	List& GetAdjList(int u);
