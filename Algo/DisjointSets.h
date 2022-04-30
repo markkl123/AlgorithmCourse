@@ -1,16 +1,16 @@
 #pragma once
-
+using namespace std;
+#include <vector>
 typedef struct {
 	int parent;
 	int size;
 }Element;
 
-const int MAX_SIZE = 100;
-
 class DisjointSets
 {
 private:
-	Element A[MAX_SIZE];
+	vector<Element> A;
+
 public:
 	DisjointSets();
 	void MakeSet(int x);

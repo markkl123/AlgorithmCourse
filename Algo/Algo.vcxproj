@@ -140,11 +140,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Algo.cpp" />
+    <ClCompile Include="DisjointSets.cpp" />
     <ClCompile Include="Graph.cpp" />
+    <ClCompile Include="HeapMin.cpp" />
+    <ClCompile Include="List.cpp" />
+    <ClCompile Include="Node.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DisjointSets.h" />
     <ClInclude Include="Graph.h" />
+    <ClInclude Include="HeapMin.h" />
+    <ClInclude Include="List.h" />
+    <ClInclude Include="Node.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
