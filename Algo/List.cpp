@@ -3,9 +3,7 @@
 bool List::isEmpty() {
 	return Head == nullptr;
 }
-Node* List::First() {
-	
-}
+
 Node* List::Find(int key) {
 	Node* curr = this->Head;
 
