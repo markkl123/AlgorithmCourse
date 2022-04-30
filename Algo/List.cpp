@@ -1,5 +1,9 @@
 #include "List.h"
 
+Node* List::GetHead() {
+	return Head;
+}
+
 bool List::isEmpty() {
 	return Head == nullptr;
 }
