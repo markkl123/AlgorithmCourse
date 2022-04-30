@@ -1,7 +1,6 @@
 #pragma once
 struct Edge {
     int dest, weight;
-    Node* paralelEdge;
 };
 class Node
 {
