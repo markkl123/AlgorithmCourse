@@ -19,10 +19,12 @@ private:
 	vector<vector<Edge>> Adjacency;
 public:
 	Graph(int n) { MakeEmptyGraph(n); };
+	int GetVertexAmount() { return n; }
 	void MakeEmptyGraph(int n);
 	bool IsAdjacent(int u, int v);
 	vector<Edge> GetAdjList(int u);
 	void AddEdge(int u, int v, int c);
 	void RemoveEdge(int u, int v);
+	void DFS();
 };
 

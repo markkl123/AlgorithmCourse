@@ -1,11 +1,13 @@
-// Algo.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
+#pragma once
+#include "HeapMin.h"
 #include <iostream>
 
-int main()
+void main()
 {
-    std::cout << "Hello World!\n";
+	//HeapMin heap(5);
+	//Pair A[] = {1,2,3,4};
+	//heap.Build(A);
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

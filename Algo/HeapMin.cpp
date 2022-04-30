@@ -1,8 +1,24 @@
 #include "HeapMin.h"
 
-HeapMin::HeapMin() {
-	HeapArray = new Pair[maxSize];
-	heapSize = 0;
+HeapMin::HeapMin(int n = 0) {
+	heapSize = n;
+	HeapArray = new Pair[heapSize];
+}
+
+void HeapMin::Build(Pair A[]) {
+	HeapArray = A;
+	for (int i = heapSize / 2 - 1;i >= 0;i--) {
+		FixHeap(i);
+	}
+}
+
+bool HeapMin::isEmpty() {
+	return heapSize == 0;
+}
+
+void HeapMin::DecreaseKey(int place, Pair newKey) {
+	HeapArray[place] = newKey;
+	FixHeap(place);
 }
 
 void HeapMin::FixHeap(int node) {
@@ -35,23 +51,6 @@ Pair HeapMin::DeleteMin()
 	HeapArray[0] = HeapArray[heapSize];
 	FixHeap(0);
 	return min;
-}
-
-int HeapMin::Insert(Pair item) {
-	if (heapSize == maxSize) {
-		cout << "Wrong Input" << endl;
-		exit(1);
-	}
-	int i = heapSize;
-	heapSize++;
-
-	while ((i > 0) && (HeapArray[Parent(i)]).key > item.key) {
-		HeapArray[i] = HeapArray[Parent(i)];
-		i = Parent(i);
-	}
-
-	HeapArray[i] = item;
-	return i;
 }
 
 int HeapMin::Left(int node) {
