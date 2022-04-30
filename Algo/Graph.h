@@ -10,8 +10,6 @@ using namespace std;
 struct Edge {
 	int dest, weight;
 };
-
-
 class Graph
 {
 private:
