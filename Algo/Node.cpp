@@ -1,11 +1,5 @@
 #include "Node.h"
 
-Node::Node(Edge edge, Node* Next = nullptr, Node* Prev = nullptr) {
-    this->edge = edge;
-    this->Next = Next;
-    this->Prev = Prev;
-}
-
 Edge Node::Get_Edge() {
     return edge;
 }

@@ -1,23 +1,16 @@
 #pragma once
-using namespace std;
-#include <iostream>
-#include <vector>
-//#include "List.h"
+#include "List.h"
 
 //Data structure to store adjacency list nodes
 
 //Data structure to store a graph edge
-struct Edge {
-	int dest, weight;
-};
-
 class Graph
 {
 private:
 	int n;
-	vector< List > Adjacency;
+	vector<List> Adjacency;
 public:
-	Graph(int n) { MakeEmptyGraph(n); };
+	Graph(int n):n(n) {  MakeEmptyGraph(n); };
 	int GetVertexAmount() { return n; }
 	void MakeEmptyGraph(int n);
 	bool IsAdjacent(int u, int v);

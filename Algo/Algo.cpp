@@ -1,10 +1,9 @@
 #pragma once
-#include "HeapMin.h"
-#include <iostream>
-
-void main()
+#include "Graph.h"
+#include <ctype.h>
+int main(int argc, char* argv[])
 {
-	//HeapMin heap(5);
-	//Pair A[] = {1,2,3,4};
-	//heap.Build(A);
+	float n;
+	cin >> n;
+	cout << n;
 }
