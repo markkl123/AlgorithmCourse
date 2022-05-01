@@ -46,7 +46,7 @@ void List::DeleteNode(int v) {
 	}
 }
 
-int partition(FullEdge arr[], int start, int end)
+int List::partition(FullEdge arr[], int start, int end)
 {
 	int pivot = arr[start].weight;
 
@@ -79,7 +79,7 @@ int partition(FullEdge arr[], int start, int end)
 	return pivotIndex;
 }
 
-void quickSort(FullEdge arr[], int start = 0, int end = -1)
+void List:: quickSort (FullEdge arr[], int start = 0, int end = -1)
 {
 	if (end == -1)
 		end = sizeof(arr) / sizeof(*arr);
