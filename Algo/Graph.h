@@ -4,14 +4,6 @@ using namespace std;
 #include <vector>
 #include "List.h"
 
-//Data structure to store adjacency list nodes
-
-//Data structure to store a graph edge
-struct Edge {
-	int dest, weight;
-};
-
-
 class Graph
 {
 private:
