@@ -10,6 +10,10 @@ class Node;
 struct Edge {
     int dest, weight;
 };
+struct FullEdge {
+    int source,dest, weight;
+};
+
 class Node
 {
 private:

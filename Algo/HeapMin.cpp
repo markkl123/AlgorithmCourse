@@ -1,6 +1,6 @@
 #include "HeapMin.h"
 
-HeapMin::HeapMin(int n = 0) {
+HeapMin::HeapMin(int n) {
 	heapSize = n;
 	HeapArray = new Pair[heapSize];
 }

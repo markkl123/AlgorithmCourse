@@ -15,8 +15,9 @@ List& Graph::GetAdjList(int u) {
 }
 
 void Graph::AddEdge(int u, int v, int c) {
-    GetAdjList(u).InsertFront({v,c});
-    GetAdjList(u).InsertFront({u,c});
+    Edge u_v = { v,c }, v_u = { u,c };
+    GetAdjList(u).InsertFront(u_v);
+    GetAdjList(u).InsertFront(v_u);
 }
 
 void Graph::RemoveEdge(int u, int v) {
@@ -25,6 +26,7 @@ void Graph::RemoveEdge(int u, int v) {
 }
 
 void Graph::DFS(Graph G) {
+    char* visited = new char(8);
     int i;
     for (i = 0;i < n;i++) {
         visited[i] = 'w';
@@ -39,6 +41,7 @@ void Graph::DFS(Graph G) {
 }
 //change dfs not done
 void Graph::Visit(int vertex) {
+    char* visited = new char(8);
     visited[vertex] = 'g';
 
     Node* curr = Adjacency[vertex].GetHead();
