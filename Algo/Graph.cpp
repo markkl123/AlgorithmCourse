@@ -136,14 +136,45 @@ void Graph::quickSort(FullEdge arr[], int start = 0, int end = -1)
     quickSort(arr, p + 1, end);
 }
 
-int Graph::Prim() {
-    HeapMin Q(m);
+int Graph::Prim(Graph G) {
+    HeapMin Q(n);
+    int MST_Weight;
+    int u, i;
     bool* InT = new bool[n];
-   
+    for (i = 0; i < n; i++)
+        InT[i] = false;
+
     int* min = new int[n];
     min[0] = 0;
 
-    //Q.Build();
+    for (i = 1; i < n; i++)
+        min[i] = INT32_MAX;
+
+    Q.Build(min);
+    while (!Q.isEmpty())
+    {
+        u = Q.DeleteMin();
+        InT[u] = true;
+        Node* curr = GetAdjList(u).GetHead();
+        Edge edge;
+        while (curr != nullptr)
+        {
+            edge = curr->Get_Edge();
+            if (!InT[edge.dest - 1] && edge.weight < min[edge.dest - 1])
+            {
+                min[edge.dest - 1] = edge.weight;
+                Q.DecreaseKey(edge.dest - 1, min[edge.dest - 1]);
+            }
+            curr = curr->Get_Next();
+        }
+    }
+
+    MST_Weight = 0;
+
+    for (i = 0; i < n; i++)
+        MST_Weight += min[i];
+
+    return MST_Weight;
 }
 
 
