@@ -10,17 +10,21 @@ class Graph
 {
 private:
 	int n;
+	int m;
 	vector<List> Adjacency;
-	
 public:
-	Graph(int n) { MakeEmptyGraph(n); };
+	Graph(int n, int m):m(m), n(n) { MakeEmptyGraph(n);};
 	int GetVertexAmount() { return n; }
 	void MakeEmptyGraph(int n);
 	bool IsAdjacent(int u, int v);
 	List& GetAdjList(int u);
 	void AddEdge(int u, int v, int c);
 	void RemoveEdge(int u, int v);
-	void DFS(Graph G);
-	void Visit(int vertex);
+	FullEdge* DFS(Graph G);
+	void Visit(int vertex, vector<char> visited, FullEdge* arrOfEdges, int& i);
+	int Kruskal(FullEdge* arrOfEdges, Graph G);
+	int partition(FullEdge arr[], int start, int end);
+	void quickSort(FullEdge arr[], int start = 0, int end = -1);
+	int Prim(Graph G);
 };
 

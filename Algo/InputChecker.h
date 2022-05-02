@@ -2,6 +2,7 @@
 #include "Graph.h"
 #include <fstream>
 #include <sstream>
+class Graph;
 
 void Exit();
 bool is_number(const string& s);

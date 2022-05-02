@@ -24,5 +24,6 @@ public:
 	int Left(int node);
 	int Right(int node);
 	int Parent(int node);
+	void Swap(Pair& pair1, Pair& pair2);
 };
 

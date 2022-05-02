@@ -11,5 +11,6 @@ public:
     Node* Find(int key);
     Node* InsertFront(Edge edge);
     void DeleteNode(int v);
+   
 };
 
