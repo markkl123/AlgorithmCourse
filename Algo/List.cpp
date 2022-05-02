@@ -79,10 +79,8 @@ int partition(FullEdge arr[], int start, int end)
 	return pivotIndex;
 }
 
-void quickSort(FullEdge arr[], int start = 0, int end = -1)
+void quickSort(FullEdge arr[], int start, int end)
 {
-	if (end == -1)
-		end = sizeof(arr) / sizeof(*arr);
 	// base case
 	if (start >= end)
 		return;

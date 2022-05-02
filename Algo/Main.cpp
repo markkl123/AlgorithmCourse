@@ -2,12 +2,8 @@
 
 int main(int argc, const char* argv[])
 {
-	vector<FullEdge> e = { {1,2,3},{1,3,1},{2,3,4},{5,6,2}};
-	FullEdge f;
-	HeapMin heap = e;
-	for (int i = 0; i < 4; i++)
-	{
-		f = heap.DeleteMin().data;
-		cout << "(" << f.source << ", " << f.dest << ", " << f.weight << ")" << endl;
-	}
+	Graph* g;
+	int u_To_Remove, v_To_Remove;
+	g = Text_to_Graph(argv[1], u_To_Remove, v_To_Remove);
+
 }
