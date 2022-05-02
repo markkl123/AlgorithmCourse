@@ -36,9 +36,17 @@ void HeapMin::FixHeap(int node) {
 		min = right;
 	}
 	if (min != node) {
+		Swap(HeapArray[node], HeapArray[min]);
 		FixHeap(min);
 	}
 
+}
+
+void HeapMin::Swap(Pair& pair1, Pair& pair2) {
+
+	Pair temp = pair1;
+	pair1 = pair2;
+	pair2 = temp;
 }
 
 Pair HeapMin::DeleteMin()

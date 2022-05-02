@@ -3,7 +3,8 @@ using namespace std;
 #include <iostream>
 #include <vector>
 #include "List.h"
-#include "InputChecker.h"
+#include "DisjointSets.h"
+#include "HeapMin.h"
 
 class Graph
 {
@@ -21,6 +22,9 @@ public:
 	void RemoveEdge(int u, int v);
 	FullEdge* DFS(Graph G);
 	void Visit(int vertex, vector<char> visited, FullEdge* arrOfEdges, int& i);
-	void Kruskal();
+	int Kruskal(FullEdge* arrOfEdges, Graph G);
+	int partition(FullEdge arr[], int start, int end);
+	void quickSort(FullEdge arr[], int start = 0, int end = -1);
+	int Prim(Graph G);
 };
 
