@@ -3,6 +3,8 @@ using namespace std;
 #include <iostream>
 #include <vector>
 #include "List.h"
+#include "DisjointSets.h"
+#include "HeapMin.h"
 
 class Graph
 {
@@ -11,7 +13,7 @@ private:
 	vector<List> Adjacency;
 	
 public:
-	Graph(int n) { MakeEmptyGraph(n);};
+	Graph(int n) { MakeEmptyGraph(n); };
 	int GetVertexAmount() { return n; }
 	void MakeEmptyGraph(int n);
 	bool IsAdjacent(int u, int v);

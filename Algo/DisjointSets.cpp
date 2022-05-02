@@ -1,7 +1,7 @@
 #include "DisjointSets.h"
 
-DisjointSets::DisjointSets() {
-	for (int i = 0;i < A.size();i++) {
+DisjointSets::DisjointSets(int n):A(n) {
+	for (int i = 0;i < n;i++) {
 		A[i].parent = -1;
 		A[i].size = 0;
 	}
@@ -13,11 +13,12 @@ void DisjointSets::MakeSet(int x) {
 }
 
 int DisjointSets::Find(int x) {
-	if (A[x].parent == x) {
+	if (A[x].parent == x)
 		return x;
-	}
 	else {
-		return A[x].parent == Find(A[x].parent);
+		int parent = Find(A[x].parent);
+		A[x].parent = parent;
+		return parent;
 	}
 }
 

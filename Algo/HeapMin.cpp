@@ -1,12 +1,18 @@
 #include "HeapMin.h"
 
-HeapMin::HeapMin(int n) {
-	heapSize = n;
-	HeapArray = new Pair[heapSize];
+HeapMin::HeapMin(vector <FullEdge> A) {
+	this->Build(A);
 }
 
-void HeapMin::Build(Pair A[]) {
-	HeapArray = A;
+void HeapMin::Build(vector <FullEdge> A) {
+	heapSize = A.size();
+	Pair* pairArr = new Pair[heapSize];
+	for (int i = 0; i < heapSize; i++)
+	{
+		pairArr[i].data = A[i];
+		pairArr[i].key = A[i].weight;
+	}
+	HeapArray = pairArr;
 	for (int i = heapSize / 2 - 1;i >= 0;i--) {
 		FixHeap(i);
 	}
