@@ -22,8 +22,10 @@ Node* List::Find(int key) {
 }
 
 Node* List::InsertFront(Edge edge) {
-	Node* newEdge = new Node(edge, Head);
+	Node* newEdge = new Node(edge);
 	newEdge->Set_Next(Head);
+	if (Head != nullptr)
+		Head->Set_Prev(newEdge);
 	Head = newEdge;
 	return newEdge;
 }

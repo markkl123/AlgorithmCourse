@@ -36,7 +36,7 @@ Graph* Text_to_Graph(const char* filename,int& u_to_Remove, int& v_to_Remove)
 	int n = checkAmountOfEdges(line);
 	infile >> line;
 	int m = checkAmountOfEdges(line);
-	Graph* res = new Graph(n);
+	Graph* res = new Graph(n, m);
 	for (i = 0; i<m && infile >> su >> sv >> sc ;i++)
 	{
 		CheckEdge(n, su,sv,sc, u, v, c);

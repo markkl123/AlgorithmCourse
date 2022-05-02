@@ -17,77 +17,84 @@ List& Graph::GetAdjList(int u) {
 
 void Graph::AddEdge(int u, int v, int c) {
     Edge u_v = { v,c }, v_u = { u,c };
+    arrOfEdges.push_back({ u, v, c });
     GetAdjList(u).InsertFront(u_v);
     GetAdjList(v).InsertFront(v_u);
 }
 
 void Graph::RemoveEdge(int u, int v) {
+    FullEdge fe;
+    for (int i = 0; i < arrOfEdges.size(); i++)
+    {
+        fe = arrOfEdges[i];
+        if ((fe.source == u && fe.dest == v) || (fe.source == v && fe.dest == u))
+            arrOfEdges.erase(arrOfEdges.begin() + i);
+    }
+    m--;
     GetAdjList(u).DeleteNode(v);
     GetAdjList(v).DeleteNode(u);
 }
 
-FullEdge* Graph::DFS() {
+bool Graph::DFS() {
     vector<char> visited;
     int i = 0;
-    FullEdge* arrOfEdges = new FullEdge[m];
+    vector<FullEdge> arrOfEdges(m);
+
     for (i = 0;i < n;i++) {
         visited.push_back('w');
     }
-    Visit(0, visited, arrOfEdges, i);
+    i = 0;
+    Visit(0, visited, i);
     for (i = 0;i < n;i++) {
         if (visited[i] == 'w') {
-            cout << "Kruskal NO MST\n Prim NO MST\nKruskal NO MST";
-            exit(1);
+            return false;
         }
     }
-    return arrOfEdges;
+    return true;
 }
 
-void Graph::Visit(int vertex, vector<char> visited, FullEdge* arrOfEdges, int& i) {
+void Graph::Visit(int vertex, vector<char> &visited, int& i) {
     visited[vertex] = 'g';
-
+    
     Node* curr = Adjacency[vertex].GetHead();
 
     while (curr != nullptr) {
-        if (visited[curr->Get_Edge().dest] == 'w') {
-            arrOfEdges[i] = { vertex, curr->Get_Edge().dest, curr->Get_Edge().weight };
+        
+        if (visited[curr->Get_Edge().dest - 1] == 'w') {
             i += 1;
-            Visit(curr->Get_Edge().dest, visited, arrOfEdges, i);
+            Visit(curr->Get_Edge().dest - 1, visited, i);
         }
         curr = curr->Get_Next();
     }
     visited[vertex] = 'b';
+
 }
 
 int Graph::Kruskal() {
-    FullEdge* arrOfEdges = DFS();
-    int i, uRep, vRep, weight = 0;
+    int i, uRep, vRep, MSTWeight = 0;
     DisjointSets s(n);
-    Node* curr;
-    
-    for (i = 0; i < Adjacency.size(); i++) {
+    FullEdge curr;
+
+    for (i = 0; i < n; i++) {
         s.MakeSet(i);
     }
 
-    quickSort(arrOfEdges, 0, n-1);
-    for (i = 0; i < Adjacency.size(); i++) {
-        curr = Adjacency[i].GetHead();
+    quickSort(arrOfEdges, 0, m - 1);
+    for (i = 0; i < m; i++) {
+        curr = arrOfEdges[i];
 
-        while (curr != nullptr) {
-            vRep = s.Find(i);
-            uRep = s.Find(Adjacency[i].GetHead()->Get_Edge().dest);
+        vRep = s.Find(curr.source - 1);
+        uRep = s.Find(curr.dest - 1);
 
-            if (uRep != vRep) {
-                weight += curr->Get_Edge().weight;
-                s.Union(uRep, vRep);
-            }
-            curr = curr->Get_Next();
+        if (uRep != vRep) {
+            MSTWeight += curr.weight;
+            s.Union(uRep, vRep);
         }
     }
-    return weight;
+    return MSTWeight;
 }
 
-int Graph::partition(FullEdge arr[], int start, int end)
+int Graph::partition(vector<FullEdge>& arr, int start, int end)
 {
     int pivot = arr[start].weight;
 
@@ -120,7 +127,7 @@ int Graph::partition(FullEdge arr[], int start, int end)
     return pivotIndex;
 }
 
-void Graph::quickSort(FullEdge arr[], int start = 0, int end = -1)
+void Graph::quickSort(vector<FullEdge> &arr, int start, int end)
 {
     // base case
     if (start >= end)
@@ -136,34 +143,35 @@ void Graph::quickSort(FullEdge arr[], int start = 0, int end = -1)
     quickSort(arr, p + 1, end);
 }
 
-int Graph::Prim(Graph G) {
+int Graph::Prim() {
     HeapMin Q(n);
-    int MST_Weight;
-    int u, i;
+    int MST_Weight, i;
+    Pair u;
     bool* InT = new bool[n];
     for (i = 0; i < n; i++)
         InT[i] = false;
 
-    int* min = new int[n];
-    min[0] = 0;
+    Pair* min = new Pair[n];
+    min[0] = { 0 ,0};
 
-    for (i = 1; i < n; i++)
-        min[i] = INT32_MAX;
+    for (i = 1; i < n; i++) {
+        min[i] = { i,INT32_MAX };
+    }
 
     Q.Build(min);
     while (!Q.isEmpty())
     {
         u = Q.DeleteMin();
-        InT[u] = true;
-        Node* curr = GetAdjList(u).GetHead();
+        InT[u.data] = true;
+        Node* curr = Adjacency[u.data].GetHead();
         Edge edge;
         while (curr != nullptr)
         {
             edge = curr->Get_Edge();
-            if (!InT[edge.dest - 1] && edge.weight < min[edge.dest - 1])
+            if (!InT[edge.dest - 1] && edge.weight < min[edge.dest - 1].key)
             {
-                min[edge.dest - 1] = edge.weight;
-                Q.DecreaseKey(edge.dest - 1, min[edge.dest - 1]);
+                min[edge.dest - 1].key = edge.weight;
+                Q.DecreaseKey(edge.dest - 1, min[edge.dest - 1].key);
             }
             curr = curr->Get_Next();
         }
@@ -172,7 +180,7 @@ int Graph::Prim(Graph G) {
     MST_Weight = 0;
 
     for (i = 0; i < n; i++)
-        MST_Weight += min[i];
+        MST_Weight += min[i].key;
 
     return MST_Weight;
 }

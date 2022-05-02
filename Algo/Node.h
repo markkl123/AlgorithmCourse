@@ -25,8 +25,8 @@ public:
     Edge Get_Edge();
     Node* Get_Next();
     Node* Get_Prev();
-    void Set_Next(Node* Next);
-    void Set_Prev(Node* Prev);
+    void Set_Next(Node* newNext);
+    void Set_Prev(Node* newPrev);
     ~Node();
 };
 

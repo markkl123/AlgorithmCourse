@@ -11,12 +11,14 @@ Node* Node::Get_Next() {
 Node* Node::Get_Prev() {
     return Prev;
 }
-void Node::Set_Next(Node* Next) {
-    Next = Next;
+void Node::Set_Next(Node* newNext) {
+    if (this)
+        Next = newNext;
 }
 
-void Node::Set_Prev(Node* Prev) {
-    Prev = Prev;
+void Node::Set_Prev(Node* newPrev) {
+    if (this)
+        this->Prev = newPrev;
 }
 
 Node::~Node() {

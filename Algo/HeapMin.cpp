@@ -1,14 +1,11 @@
 #include "HeapMin.h"
 
-HeapMin::HeapMin(int n =0) {
-	heapSize = n;
-}
-
-void HeapMin::Build(int* A) {
-	int* pairArr = new int[heapSize];
+void HeapMin::Build(Pair* A) {
+	Pair* pairArr = new Pair[heapSize];
 	for (int i = 0; i < heapSize; i++)
 	{
-		pairArr[i] = A[i];
+		pairArr[i].data = A[i].data;
+		pairArr[i].key = A[i].key;
 	}
 	HeapArray = pairArr;
 	for (int i = heapSize / 2 - 1;i >= 0;i--) {
@@ -21,8 +18,19 @@ bool HeapMin::isEmpty() {
 }
 
 void HeapMin::DecreaseKey(int place, int newKey) {
-	HeapArray[place] = newKey;
-	FixHeap(place);
+	int i;
+	for (i = 0; HeapArray[i].data != place; i++){}
+	HeapArray[i].key = newKey;
+	FixHeapUp(i);
+}
+
+void HeapMin::FixHeapUp(int node) {
+	int parent = Parent(node);
+
+	if ((node > 0) && (HeapArray[parent].key > HeapArray[node].key)) {
+		Swap(HeapArray[node], HeapArray[parent]);
+		FixHeapUp(parent);
+	}
 }
 
 void HeapMin::FixHeap(int node) {
@@ -30,13 +38,13 @@ void HeapMin::FixHeap(int node) {
 	int left = Left(node);
 	int right = Right(node);
 
-	if ((left < heapSize) && (HeapArray[left] < HeapArray[node])) {
+	if ((left < heapSize) && (HeapArray[left].key < HeapArray[node].key)) {
 		min = left;
 	}
 	else {
 		min = node;
 	}
-	if ((right < heapSize) && (HeapArray[right] < HeapArray[min])) {
+	if ((right < heapSize) && (HeapArray[right].key < HeapArray[min].key)) {
 		min = right;
 	}
 	if (min != node) {
@@ -46,19 +54,19 @@ void HeapMin::FixHeap(int node) {
 
 }
 
-void HeapMin::Swap(int& pair1, int& pair2) {
+void HeapMin::Swap(Pair& pair1, Pair& pair2) {
 
-	int temp = pair1;
+	Pair temp = pair1;
 	pair1 = pair2;
 	pair2 = temp;
 }
 
-int HeapMin::DeleteMin()
+Pair HeapMin::DeleteMin()
 {
 	if (heapSize < 1) {
 		cout << "Error";
 	}
-	int min = HeapArray[0];
+	Pair min = HeapArray[0];
 	heapSize--;
 	HeapArray[0] = HeapArray[heapSize];
 	FixHeap(0);
