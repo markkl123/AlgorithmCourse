@@ -4,7 +4,7 @@ HeapMin::HeapMin(int n =0) {
 	heapSize = n;
 }
 
-void HeapMin::Build(FullEdge A[]) {
+void HeapMin::Build(vector <FullEdge> A) {
 	Pair* pairArr = new Pair[heapSize];
 	for (int i = 0; i < heapSize; i++)
 	{

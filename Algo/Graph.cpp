@@ -30,7 +30,6 @@ FullEdge* Graph::DFS(Graph G) {
     vector<char> visited;
     int i = 0;
     FullEdge* arrOfEdges = new FullEdge[m];
-    int i;
     for (i = 0;i < n;i++) {
         visited.push_back('w');
     }

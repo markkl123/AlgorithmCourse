@@ -15,7 +15,7 @@ private:
 	Pair* HeapArray;
 	int heapSize = 0;
 public:
-	HeapMin(vector <FullEdge> A);
+	HeapMin(int n);
 	void Build(vector <FullEdge> A);
 	bool isEmpty();
 	void DecreaseKey(int place, Pair newKey);
