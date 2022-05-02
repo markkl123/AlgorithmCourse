@@ -26,7 +26,7 @@ void Graph::RemoveEdge(int u, int v) {
     GetAdjList(v).DeleteNode(u);
 }
 
-FullEdge* Graph::DFS(Graph G) {
+FullEdge* Graph::DFS() {
     vector<char> visited;
     int i = 0;
     FullEdge* arrOfEdges = new FullEdge[m];
@@ -59,9 +59,10 @@ void Graph::Visit(int vertex, vector<char> visited, FullEdge* arrOfEdges, int& i
     visited[vertex] = 'b';
 }
 
-int Graph::Kruskal(FullEdge* arrOfEdges, Graph G) {
+int Graph::Kruskal() {
+    FullEdge* arrOfEdges = DFS();
     int i, uRep, vRep, weight = 0;
-    DisjointSets s;
+    DisjointSets s(n);
     Node* curr;
     
     for (i = 0; i < Adjacency.size(); i++) {
@@ -135,8 +136,8 @@ void Graph::quickSort(FullEdge arr[], int start = 0, int end = -1)
     quickSort(arr, p + 1, end);
 }
 
-int Graph::Prim(Graph G) {
-    HeapMin Q;
+int Graph::Prim() {
+    HeapMin Q(m);
     bool* InT = new bool[n];
    
     int* min = new int[n];

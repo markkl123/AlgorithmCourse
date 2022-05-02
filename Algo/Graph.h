@@ -20,11 +20,11 @@ public:
 	List& GetAdjList(int u);
 	void AddEdge(int u, int v, int c);
 	void RemoveEdge(int u, int v);
-	FullEdge* DFS(Graph G);
+	FullEdge* DFS();
 	void Visit(int vertex, vector<char> visited, FullEdge* arrOfEdges, int& i);
-	int Kruskal(FullEdge* arrOfEdges, Graph G);
+	int Kruskal();
 	int partition(FullEdge arr[], int start, int end);
 	void quickSort(FullEdge arr[], int start = 0, int end = -1);
-	int Prim(Graph G);
+	int Prim();
 };
 
