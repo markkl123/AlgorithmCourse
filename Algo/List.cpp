@@ -45,4 +45,3 @@ void List::DeleteNode(int v) {
 		}
 	}
 }
-

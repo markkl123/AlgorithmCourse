@@ -5,7 +5,7 @@ using namespace std;
 #include <string>
 struct Pair
 {
-	Edge data;
+	FullEdge data;
 	int key;
 };
 
@@ -15,8 +15,8 @@ private:
 	Pair* HeapArray;
 	int heapSize = 0;
 public:
-	HeapMin(int n = 0);
-	void Build(Pair A[]);
+	HeapMin(vector <FullEdge> A);
+	void Build(vector <FullEdge> A);
 	bool isEmpty();
 	void DecreaseKey(int place, Pair newKey);
 	void FixHeap(int node);

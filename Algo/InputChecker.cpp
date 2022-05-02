@@ -24,27 +24,28 @@ void Validarg(int argc,const char* argv[])
 		Exit();
 }
 
-Graph* Text_to_Graph(char* filename,int& u_to_Remove, int& v_to_Remove)
+Graph* Text_to_Graph(const char* filename,int& u_to_Remove, int& v_to_Remove)
 {
 	int u, v, c, i;
+	string su, sv, sc;
 	ifstream infile(filename);
 	if (!infile.good())
 		Exit();
 	string line;
 	infile >> line;
 	int n = checkAmountOfEdges(line);
-	Graph* res = new Graph(n);
 	infile >> line;
 	int m = checkAmountOfEdges(line);
-	for (i = 0; infile >> line && i<m;i++)
+	Graph* res = new Graph(n);
+	for (i = 0; i<m && infile >> su >> sv >> sc ;i++)
 	{
-		CheckEdge(n, line, u, v, c);
+		CheckEdge(n, su,sv,sc, u, v, c);
 		res->AddEdge(u, v, c);
 	}
-	if (!(infile >> line) || i != m)
+	if (!(infile >> su >> sv) || i != m)
 		Exit();
 	
-	CheckEdge(n, line + " 0", u_to_Remove, v_to_Remove, c); //Reduction
+	CheckEdge(n, su, sv, "0", u_to_Remove, v_to_Remove,c); //Reduction
 
 	if (infile >> line)
 		Exit();
@@ -54,21 +55,8 @@ Graph* Text_to_Graph(char* filename,int& u_to_Remove, int& v_to_Remove)
 	return res;
 }
 
-void CheckEdge(int n, string u_v_c,int &u_out,int &v_out,int &c_out)
+void CheckEdge(int n, string u,string v,string c,int &u_out,int &v_out,int &c_out)
 {
-	string buf;                 // Have a buffer string
-	stringstream ss(u_v_c);       // Insert the string into a stream
-
-	vector<string> tokens; // Create vector to hold our words
-
-	while (ss >> buf)
-		tokens.push_back(buf);
-
-	if (tokens.size() != 3)
-		Exit();
-
-	string u = tokens[0], v = tokens[1], c = tokens[2];
-
 	if (!(is_number(u) && is_number(v) && is_number(c)))
 		Exit();
 

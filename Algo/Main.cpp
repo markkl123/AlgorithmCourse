@@ -1,13 +1,9 @@
 #include "InputChecker.h"
 
-int main(int argc,const char* argv[])
+int main(int argc, const char* argv[])
 {
-	Graph g = 8;
-	g.AddEdge(1, 2,1);
-	g.AddEdge(3, 4,2);
-	g.AddEdge(1,5, 2);
-	g.AddEdge(3, 1, 2);
-	g.AddEdge(1, 4, 2);
-	cout << g.GetVertexAmount();
+	Graph* g;
+	int u_To_Remove, v_To_Remove;
+	g = Text_to_Graph(argv[1], u_To_Remove, v_To_Remove);
 
 }

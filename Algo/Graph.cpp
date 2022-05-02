@@ -2,6 +2,7 @@
 int currentRoot = 0;
 
 void Graph::MakeEmptyGraph(int n) {
+    this->n = n;
     for (int i = 0; i < n; i++)
         Adjacency.push_back(List());
 }
@@ -17,7 +18,7 @@ List& Graph::GetAdjList(int u) {
 void Graph::AddEdge(int u, int v, int c) {
     Edge u_v = { v,c }, v_u = { u,c };
     GetAdjList(u).InsertFront(u_v);
-    GetAdjList(u).InsertFront(v_u);
+    GetAdjList(v).InsertFront(v_u);
 }
 
 void Graph::RemoveEdge(int u, int v) {

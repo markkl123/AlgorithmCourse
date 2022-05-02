@@ -12,7 +12,7 @@ private:
 	vector<Element> A;
 
 public:
-	DisjointSets();
+	DisjointSets(int n);
 	void MakeSet(int x);
 	int Find(int x);
 	void Union(int repx, int repy);
