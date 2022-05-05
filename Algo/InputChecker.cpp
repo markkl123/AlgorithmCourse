@@ -1,8 +1,10 @@
 #include "InputChecker.h"
 
-void Exit()
+void Exit(ofstream &myfile)
 {
 	cout << "invalid input";
+	if (myfile)
+	myfile << "invalid input";
 	exit(1);
 }
 
@@ -15,68 +17,69 @@ bool is_number(const string& s)
 
 void Validarg(int argc,const char* argv[])
 {
+	ofstream stream;
 	if (argc != 3)
-		Exit();
+		Exit(stream);
 
 	ifstream infile(argv[1]);
 
 	if (!infile.good())
-		Exit();
+		Exit(stream);
 }
 
-Graph* Text_to_Graph(const char* filename,int& u_to_Remove, int& v_to_Remove)
+Graph* Text_to_Graph(const char* filename,int& u_to_Remove, int& v_to_Remove, ofstream& myfile)
 {
 	int u, v, c, i;
 	string su, sv, sc;
 	ifstream infile(filename);
 	if (!infile.good())
-		Exit();
+		Exit(myfile);
 	string line;
 	infile >> line;
-	int n = checkAmountOfEdges(line);
+	int n = checkAmountOfEdges(line, myfile);
 	infile >> line;
-	int m = checkAmountOfEdges(line);
+	int m = checkAmountOfEdges(line, myfile);
 	Graph* res = new Graph(n, m);
 	for (i = 0; i<m && infile >> su >> sv >> sc ;i++)
 	{
-		CheckEdge(n, su,sv,sc, u, v, c);
+		CheckEdge(n, su,sv,sc, u, v, c, myfile);
 		res->AddEdge(u, v, c);
 	}
 	if (!(infile >> su >> sv) || i != m)
-		Exit();
+		Exit(myfile);
 	
-	CheckEdge(n, su, sv, "0", u_to_Remove, v_to_Remove,c); //Reduction
+	CheckEdge(n, su, sv, "0", u_to_Remove, v_to_Remove,c, myfile); //Reduction
 
 	if (infile >> line)
-		Exit();
+		Exit(myfile);
 	if (!res->IsAdjacent(u_to_Remove, v_to_Remove))
-		Exit();
+		Exit(myfile);
 
 	return res;
 }
 
-void CheckEdge(int n, string u,string v,string c,int &u_out,int &v_out,int &c_out)
+void CheckEdge(int n, string u,string v,string c,int &u_out,int &v_out,int &c_out, ofstream& myfile)
 {
 	if (!(is_number(u) && is_number(v) && is_number(c)))
-		Exit();
+		Exit(myfile);
 
 	int iu = stoi(u), iv = stoi(v),ic = stoi(c);
 
 	if (n < 0 || iu > n || iv > n || iu < 1 || iv < 1)
-		Exit();
+		Exit(myfile);
 
 	u_out = iu;
 	v_out = iv;
 	c_out = ic;
 }
 
-int checkAmountOfEdges(string n)
+int checkAmountOfEdges(string n, ofstream& myfile)
 {
 	if (!is_number(n))
-		Exit();
+		Exit(myfile);
 	int in = stoi(n);
 	if (in < 0)
-		Exit();
+		Exit(myfile);
 	return in;
 }
 
