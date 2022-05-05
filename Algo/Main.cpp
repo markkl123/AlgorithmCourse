@@ -5,6 +5,7 @@ int main(int argc, const char* argv[])
 	Graph* g;
 	int u_To_Remove, v_To_Remove, Prim ,Kruskal , Kruskal2;
 	ofstream myfile;
+	Validarg(argc, argv);
 	myfile.open(argv[2]);
 	g = Text_to_Graph(argv[1], u_To_Remove, v_To_Remove, myfile);
 	if (!g->DFS()) {

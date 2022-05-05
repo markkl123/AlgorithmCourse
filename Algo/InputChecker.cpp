@@ -3,7 +3,7 @@
 void Exit(ofstream &myfile)
 {
 	cout << "invalid input";
-	if (myfile)
+	if (myfile.good())
 	myfile << "invalid input";
 	exit(1);
 }
