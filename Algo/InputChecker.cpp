@@ -15,18 +15,6 @@ bool is_number(const string& s)
 	return !s.empty() && it == s.end();
 }
 
-void Validarg(int argc,const char* argv[])
-{
-	ofstream stream;
-	if (argc != 3)
-		Exit(stream);
-
-	ifstream infile(argv[1]);
-
-	if (!infile.good())
-		Exit(stream);
-}
-
 Graph* Text_to_Graph(const char* filename,int& u_to_Remove, int& v_to_Remove, ofstream& myfile)
 {
 	int u, v, c, i;

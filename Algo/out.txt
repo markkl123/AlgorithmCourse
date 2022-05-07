@@ -1,1 +1,3 @@
-invalid input
+Prim 47
+Kruskal 47
+Kruskal2 49
