@@ -1,6 +1,7 @@
 #pragma once
 using namespace std;
 #include <vector>
+
 typedef struct {
 	int parent;
 	int size;

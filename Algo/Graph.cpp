@@ -1,27 +1,27 @@
 #include "Graph.h"
 int currentRoot = 0;
-
+//Create a empty graph
 void Graph::MakeEmptyGraph(int n) {
     this->n = n;
     for (int i = 0; i < n; i++)
         Adjacency.push_back(List());
 }
-
+//Check if there is a edge between two vertex
 bool Graph::IsAdjacent(int u, int v) {
     return (GetAdjList(u).Find(v) != nullptr);
 }
-
+//Return the adjacency list
 List& Graph::GetAdjList(int u) {
     return Adjacency[u - 1];
 }
-
+//Add edge to the graph
 void Graph::AddEdge(int u, int v, int c) {
     Edge u_v = { v,c }, v_u = { u,c };
     arrOfEdges.push_back({ u, v, c });
     GetAdjList(u).InsertFront(u_v);
     GetAdjList(v).InsertFront(v_u);
 }
-
+//Remove edge to the graph
 void Graph::RemoveEdge(int u, int v) {
     FullEdge fe;
     for (int i = 0; i < arrOfEdges.size(); i++)
@@ -34,7 +34,7 @@ void Graph::RemoveEdge(int u, int v) {
     GetAdjList(u).DeleteNode(v);
     GetAdjList(v).DeleteNode(u);
 }
-
+//The algorithm DFS
 bool Graph::DFS() {
     vector<char> visited;
     int i = 0;
@@ -69,7 +69,7 @@ void Graph::Visit(int vertex, vector<char> &visited, int& i) {
     visited[vertex] = 'b';
 
 }
-
+//The algorithm Kruskal
 int Graph::Kruskal() {
     int i, uRep, vRep, MSTWeight = 0;
     DisjointSets s(n);
@@ -142,7 +142,7 @@ void Graph::quickSort(vector<FullEdge> &arr, int start, int end)
     // Sorting the right part
     quickSort(arr, p + 1, end);
 }
-
+//The algorithm Prim
 int Graph::Prim() {
     HeapMin Q(n);
     int MST_Weight, i;

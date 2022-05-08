@@ -1,5 +1,5 @@
 #include "HeapMin.h"
-
+//Build the Heap
 void HeapMin::Build(Pair* A) {
 	Pair* pairArr = new Pair[heapSize];
 	for (int i = 0; i < heapSize; i++)
@@ -12,11 +12,11 @@ void HeapMin::Build(Pair* A) {
 		FixHeap(i);
 	}
 }
-
+//check if the Heap is empty
 bool HeapMin::isEmpty() {
 	return heapSize == 0;
 }
-
+//Change the key to the new value
 void HeapMin::DecreaseKey(int place, int newKey) {
 	int i;
 	for (i = 0; HeapArray[i].data != place; i++){}

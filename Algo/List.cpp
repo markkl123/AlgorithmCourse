@@ -3,11 +3,11 @@
 Node* List::GetHead() {
 	return Head;
 }
-
+//Check if the list is empty
 bool List::isEmpty() {
 	return Head == nullptr;
 }
-
+//Find a given key in the list 
 Node* List::Find(int key) {
 	Node* curr = this->Head;
 
@@ -20,7 +20,7 @@ Node* List::Find(int key) {
 
 	return nullptr;
 }
-
+//Insert the node to the front of the list
 Node* List::InsertFront(Edge edge) {
 	Node* newEdge = new Node(edge);
 	newEdge->Set_Next(Head);
@@ -29,7 +29,7 @@ Node* List::InsertFront(Edge edge) {
 	Head = newEdge;
 	return newEdge;
 }
-
+//Delete the node from the list
 void List::DeleteNode(int v) {
 
 	for (

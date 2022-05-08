@@ -1,5 +1,5 @@
 #include "InputChecker.h"
-
+//When given an invalid input
 void Exit(ofstream &myfile)
 {
 	cout << "invalid input";
@@ -7,14 +7,14 @@ void Exit(ofstream &myfile)
 	myfile << "invalid input";
 	exit(1);
 }
-
+//Check if input is number
 bool is_number(const string& s)
 {
 	string::const_iterator it = s.begin();
 	while (it != s.end() && isdigit(*it)) ++it;
 	return !s.empty() && it == s.end();
 }
-
+//Check the input if valid
 Graph* Text_to_Graph(const char* filename,int& u_to_Remove, int& v_to_Remove, ofstream& myfile)
 {
 	int u, v, c, i;
@@ -45,7 +45,7 @@ Graph* Text_to_Graph(const char* filename,int& u_to_Remove, int& v_to_Remove, of
 
 	return res;
 }
-
+//Check the edge if is valid
 void CheckEdge(int n, string u,string v,string c,int &u_out,int &v_out,int &c_out, ofstream& myfile)
 {
 	if (!(is_number(u) && is_number(v) && is_number(c)))
@@ -60,7 +60,7 @@ void CheckEdge(int n, string u,string v,string c,int &u_out,int &v_out,int &c_ou
 	v_out = iv;
 	c_out = ic;
 }
-
+//Check the amount of the given edges
 int checkAmountOfEdges(string n, ofstream& myfile)
 {
 	if (!is_number(n))

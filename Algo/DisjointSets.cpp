@@ -6,12 +6,12 @@ DisjointSets::DisjointSets(int n):A(n) {
 		A[i].size = 0;
 	}
 }
-
+//make a empty set
 void DisjointSets::MakeSet(int x) {
 	A[x].parent = x;
 	A[x].size = 1;
 }
-
+//find the representative of the given value in set
 int DisjointSets::Find(int x) {
 	if (A[x].parent == x)
 		return x;
@@ -21,7 +21,7 @@ int DisjointSets::Find(int x) {
 		return parent;
 	}
 }
-
+//union between two set and change the representative of the the set 
 void DisjointSets::Union(int repx, int repy) {
 	if (A[repx].size > A[repy].size) {
 		A[repy].parent = repx;

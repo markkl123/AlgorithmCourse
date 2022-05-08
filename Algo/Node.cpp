@@ -3,19 +3,20 @@
 Edge Node::Get_Edge() {
     return edge;
 }
-
+//Get the next node
 Node* Node::Get_Next() {
     return Next;
 }
-
+//Get the prev node
 Node* Node::Get_Prev() {
     return Prev;
 }
+//Set the next node
 void Node::Set_Next(Node* newNext) {
     if (this)
         Next = newNext;
 }
-
+//Set the prev node
 void Node::Set_Prev(Node* newPrev) {
     if (this)
         this->Prev = newPrev;
